@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import logologin from "../assets/YEY.png";
 import SwipeButton from "./SwipeButton";
 import Swal from "sweetalert2";
-import '../assets/css/swipebutton.css';
-import JEMPOL from "../assets/JEMPOL.png"
+import "../assets/css/swipebutton.css";
+import JEMPOL from "../assets/JEMPOL.png";
 import LOH from "../assets/LOH.png";
 
 const Register = () => {
@@ -27,20 +27,19 @@ const Register = () => {
     // Frontend validation
     const { name, email, phone, password, confPassword } = formData;
     if (!name || !email || !phone || !password || !confPassword) {
-      const modal = document.getElementById('my_modal_2');
+      const modal = document.getElementById("my_modal_2");
       modal.showModal();
       return;
     }
 
-
     if (password !== confPassword) {
-      const modal = document.getElementById('my_modal_3');
+      const modal = document.getElementById("my_modal_3");
       modal.showModal();
       return;
     }
 
     try {
-      const response = await fetch("http://localhost:3000/users", {
+      const response = await fetch("http://ovh.prinafsika.world/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +48,7 @@ const Register = () => {
       });
 
       if (response.ok) {
-        const modal = document.getElementById('my_modal_8');
+        const modal = document.getElementById("my_modal_8");
         modal.showModal();
         return;
       } else {
@@ -69,13 +68,8 @@ const Register = () => {
       <div className="w-[1440px] h-[1024px] pl-[105px] pr-40 pt-[193px] pb-48 bg-gray-100 justify-start items-center inline-flex">
         <div className="self-stretch bg-violet-600 rounded-[20px] justify-start items-center gap-7 inline-flex">
           <img src={logologin} alt="Logo" className="w-[639px] h-[639px]" />
-          <form
-            onSubmit={handleSubmit}
-            className="w-[508px] p-[50px] bg-white rounded-tr-[20px] rounded-br-[20px] border border-violet-600 flex flex-col gap-[30px]"
-          >
-            <div className="text-violet-600 text-xl font-semibold font-['Poppins']">
-              Sign Up
-            </div>
+          <form onSubmit={handleSubmit} className="w-[508px] p-[50px] bg-white rounded-tr-[20px] rounded-br-[20px] border border-violet-600 flex flex-col gap-[30px]">
+            <div className="text-violet-600 text-xl font-semibold font-['Poppins']">Sign Up</div>
             <div className="flex flex-col gap-[35px]">
               <input
                 type="text"
@@ -118,12 +112,9 @@ const Register = () => {
                 placeholder="Confirm Password"
               />
 
-
-
               <button className="swipe1 up" type="submit">
-                <span className="text" >Sign Up</span>
+                <span className="text">Sign Up</span>
               </button>
-
 
               <dialog id="my_modal_8" class="modal modal-bottom sm:modal-middle">
                 <div className="w-[551px] h-[360px] relative bg-white rounded-2xl">
@@ -134,13 +125,14 @@ const Register = () => {
                     </div>
                     <div className="self-stretch h-px border border-neutral-300"></div>
                     <form method="dialog" className="w-36 px-10 py-1 bg-green-600 rounded-full justify-center items-center gap-2.5 inline-flex">
-                      <a href="/Login" className="text-center text-white text-base font-normal font-['Poppins']">Continue</a>
+                      <a href="/Login" className="text-center text-white text-base font-normal font-['Poppins']">
+                        Continue
+                      </a>
                     </form>
                   </div>
                   <img className="w-80 h-80 left-[211px] top-[10px] absolute" src={JEMPOL} />
                 </div>
               </dialog>
-
 
               <dialog id="my_modal_2" class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box" className="w-[551px] h-[360px] absolute bg-white rounded-2xl">
@@ -156,7 +148,6 @@ const Register = () => {
                   </div>
                   <img className="w-80 h-80 left-[211px] top-[10px] absolute" src={LOH} />
                 </div>
-
 
                 <form method="dialog" class="modal-backdrop">
                   <button>close</button>
@@ -177,7 +168,6 @@ const Register = () => {
                   </div>
                   <img className="w-80 h-80 left-[211px] top-[10px] absolute" src={LOH} />
                 </div>
-
 
                 <form method="dialog" class="modal-backdrop">
                   <button>close</button>
@@ -203,12 +193,9 @@ const Register = () => {
                 </form>
               </dialog>
 
-
               <div className="flex flex-col gap-2.5">
                 <div className="flex items-center gap-2.5">
-                  <span className="text-gray-700 text-xs font-normal font-['Poppins']">
-                    Already have an account?
-                  </span>
+                  <span className="text-gray-700 text-xs font-normal font-['Poppins']">Already have an account?</span>
                   <a
                     href="/Login"
                     style={{

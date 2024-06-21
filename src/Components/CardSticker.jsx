@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "../assets/css/cardsticker.css";
 
 function CardSticker() {
@@ -13,8 +13,8 @@ function CardSticker() {
 
   const getStickers = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/products");
-      const filteredStickers = response.data.filter(product => product.category === "Sticker");
+      const response = await axios.get("http://ovh.prinafsika.world/products");
+      const filteredStickers = response.data.filter((product) => product.category === "Sticker");
       setStickers(filteredStickers);
       // Initialize image indices for each product
       const initialIndices = filteredStickers.reduce((acc, product) => {
@@ -30,7 +30,7 @@ function CardSticker() {
   const handleImageChange = (productId, index) => {
     setImageIndices({
       ...imageIndices,
-      [productId]: index
+      [productId]: index,
     });
   };
   const formatPrice = (price) => {
@@ -56,9 +56,15 @@ function CardSticker() {
               <h2>{sticker.name}</h2>
               <div className="color">
                 <h3>Variation :</h3>
-                <span className="number" onClick={() => handleImageChange(sticker.id, 0)}>1</span>
-                <span className="number" onClick={() => handleImageChange(sticker.id, 1)}>2</span>
-                <span className="number" onClick={() => handleImageChange(sticker.id, 2)}>3</span>
+                <span className="number" onClick={() => handleImageChange(sticker.id, 0)}>
+                  1
+                </span>
+                <span className="number" onClick={() => handleImageChange(sticker.id, 1)}>
+                  2
+                </span>
+                <span className="number" onClick={() => handleImageChange(sticker.id, 2)}>
+                  3
+                </span>
               </div>
               <h4>RP : {formatPrice(sticker.price)}</h4>
               <Link to={`detail/${sticker.id}`}>See Details</Link>

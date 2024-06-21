@@ -116,9 +116,7 @@ function Addproduct() {
 
   const loadCardImage = (e) => {
     e.preventDefault();
-    const cardImage = e.dataTransfer
-      ? e.dataTransfer.files[0]
-      : e.target.files[0];
+    const cardImage = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     if (cardImage) {
       setCardFile(cardImage);
       setPreviewCard(URL.createObjectURL(cardImage));
@@ -135,9 +133,7 @@ function Addproduct() {
   };
   const loadCardImage2 = (e) => {
     e.preventDefault();
-    const cardImage2 = e.dataTransfer
-      ? e.dataTransfer.files[0]
-      : e.target.files[0];
+    const cardImage2 = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     if (cardImage2) {
       setCardFile2(cardImage2);
       setPreviewCard2(URL.createObjectURL(cardImage2));
@@ -154,9 +150,7 @@ function Addproduct() {
   };
   const loadCardImage3 = (e) => {
     e.preventDefault();
-    const cardImage3 = e.dataTransfer
-      ? e.dataTransfer.files[0]
-      : e.target.files[0];
+    const cardImage3 = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     if (cardImage3) {
       setCardFile3(cardImage3);
       setPreviewCard3(URL.createObjectURL(cardImage3));
@@ -196,15 +190,11 @@ function Addproduct() {
 
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:3000/products",
-        formData,
-        {
-          headers: {
-            "Content-type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("http://ovh.prinafsika.world/products", formData, {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      });
       navigate("/Product");
     } catch (error) {
       console.error(error);
@@ -217,11 +207,7 @@ function Addproduct() {
   const availableSizes = ["S", "M", "L", "XL", "XXL"];
 
   const toggleSize = (size) => {
-    setSizes((prevSizes) =>
-      prevSizes.includes(size)
-        ? prevSizes.filter((s) => s !== size)
-        : [...prevSizes, size]
-    );
+    setSizes((prevSizes) => (prevSizes.includes(size) ? prevSizes.filter((s) => s !== size) : [...prevSizes, size]));
   };
 
   const handleAllSizeClick = () => {
@@ -231,14 +217,14 @@ function Addproduct() {
   const availableVariants = [
     { id: "1", name: "1" },
     { id: "2", name: "2" },
-    { id: "3", name: "3" }
+    { id: "3", name: "3" },
   ];
   const toggleVariant = (variantId) => {
-    setVariants(prevVariants => {
-      if (prevVariants.some(v => v.id === variantId)) {
-        return prevVariants.filter(v => v.id !== variantId);
+    setVariants((prevVariants) => {
+      if (prevVariants.some((v) => v.id === variantId)) {
+        return prevVariants.filter((v) => v.id !== variantId);
       } else {
-        return [...prevVariants, availableVariants.find(v => v.id === variantId)];
+        return [...prevVariants, availableVariants.find((v) => v.id === variantId)];
       }
     });
   };
@@ -258,34 +244,16 @@ function Addproduct() {
           <div className="mt-8 max-md:mt-10 max-md:max-w-full">
             <form onSubmit={saveProduct}>
               {error && <div className="notification is-danger">{error}</div>}
-              <div className="text-4xl font-bold text-violet-600 max-w-[350px]">
-                Add New Product
-              </div>
-              <div className="text-xl text-black max-w-[285px]">
-                Admin Infinite Learning Shop
-              </div>
+              <div className="text-4xl font-bold text-violet-600 max-w-[350px]">Add New Product</div>
+              <div className="text-xl text-black max-w-[285px]">Admin Infinite Learning Shop</div>
               <div className="flex gap-5 justify-between mt-14 max-md:flex-wrap max-md:mt-10">
                 <div className="flex flex-col flex-1">
-                  <div className="text-lg font-bold max-w-[150px] text-indigo-950">
-                    PRODUCT NAME
-                  </div>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="justify-center items-start px-4 py-2.5 mt-1.5 text-sm rounded-xl max-w-full text-black"
-                    placeholder="Type here"
-                  />
+                  <div className="text-lg font-bold max-w-[150px] text-indigo-950">PRODUCT NAME</div>
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="justify-center items-start px-4 py-2.5 mt-1.5 text-sm rounded-xl max-w-full text-black" placeholder="Type here" />
                 </div>
                 <div className="flex flex-col flex-1">
-                  <div className="text-lg font-bold text-indigo-950">
-                    PRODUCT CATEGORY
-                  </div>
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="justify-center items-start px-4 py-2.5 mt-1.5 text-sm rounded-xl max-w-full text-black"
-                  >
+                  <div className="text-lg font-bold text-indigo-950">PRODUCT CATEGORY</div>
+                  <select value={category} onChange={(e) => setCategory(e.target.value)} className="justify-center items-start px-4 py-2.5 mt-1.5 text-sm rounded-xl max-w-full text-black">
                     <option value="">Select category</option>
                     <option value="T-Shirt">T-Shirt</option>
                     <option value="Sticker">Sticker</option>
@@ -294,9 +262,7 @@ function Addproduct() {
                   </select>
                 </div>
                 <div className="flex flex-col flex-1">
-                  <div className="text-lg font-bold text-indigo-950">
-                    PRODUCT PRICE
-                  </div>
+                  <div className="text-lg font-bold text-indigo-950">PRODUCT PRICE</div>
                   <input
                     type="text"
                     value={formatRupiah(price)}
@@ -309,9 +275,7 @@ function Addproduct() {
                   />
                 </div>
               </div>
-              <div className="mt-7 text-lg font-bold text-indigo-950 max-md:max-w-full">
-                BRIEF PRODUCT DESCRIPTION
-              </div>
+              <div className="mt-7 text-lg font-bold text-indigo-950 max-md:max-w-full">BRIEF PRODUCT DESCRIPTION</div>
               <textarea
                 value={briefDescription}
                 onChange={(e) => setBriefDescription(e.target.value)}
@@ -320,12 +284,8 @@ function Addproduct() {
                 rows={"2"}
                 placeholder="Type here"
               />
-              <div className="text-xs text-zinc-400 max-md:max-w-full">
-                *only one sentence
-              </div>
-              <div className="mt-5 text-lg font-bold text-indigo-950 max-md:max-w-full">
-                FULL PRODUCT DESCRIPTION
-              </div>
+              <div className="text-xs text-zinc-400 max-md:max-w-full">*only one sentence</div>
+              <div className="mt-5 text-lg font-bold text-indigo-950 max-md:max-w-full">FULL PRODUCT DESCRIPTION</div>
               <textarea
                 value={fullDescription}
                 onChange={(e) => setFullDescription(e.target.value)}
@@ -335,45 +295,22 @@ function Addproduct() {
                 placeholder="Type here"
               />
               <div className="flex flex-col mt-4">
-                <div className="w-full text-lg font-bold text-indigo-950 max-md:max-w-full">
-                  UPLOAD PRODUCT IMAGE
-                </div>
+                <div className="w-full text-lg font-bold text-indigo-950 max-md:max-w-full">UPLOAD PRODUCT IMAGE</div>
                 <div className="px-5 mt-1.5 w-full max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex flex-col w-3/12 max-md:ml-0 max-md:w-full">
                       <label htmlFor="fileInput">
-                        <div
-                          className="flex flex-col grow justify-center items-center px-3 py-6 w-full text-center bg-white rounded-2xl border-2 border-dashed border-indigo-950 max-md:mt-6"
-                          onDragOver={handleDragOver}
-                          onDrop={handleDrop}
-                        >
+                        <div className="flex flex-col grow justify-center items-center px-3 py-6 w-full text-center bg-white rounded-2xl border-2 border-dashed border-indigo-950 max-md:mt-6" onDragOver={handleDragOver} onDrop={handleDrop}>
                           {preview ? (
-                            <img
-                              loading="lazy"
-                              src={preview}
-                              className="preview-image"
-                            />
+                            <img loading="lazy" src={preview} className="preview-image" />
                           ) : (
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?"
-                              className="aspect-square w-[50px]"
-                            />
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?" className="aspect-square w-[50px]" />
                           )}
-                          <div className="mt-7 text-xs font-medium text-gray-800">
-                            Drag and Drop Photo Here
-                          </div>
-                          <div className="self-stretch mt-2 text-sm text-slate-500">
-                            JPEG, JPG, dan PNG, up to xx MB
-                          </div>
+                          <div className="mt-7 text-xs font-medium text-gray-800">Drag and Drop Photo Here</div>
+                          <div className="self-stretch mt-2 text-sm text-slate-500">JPEG, JPG, dan PNG, up to xx MB</div>
                         </div>
                       </label>
-                      <input
-                        id="fileInput"
-                        type="file"
-                        style={{ display: "none" }}
-                        onChange={loadImage}
-                      />
+                      <input id="fileInput" type="file" style={{ display: "none" }} onChange={loadImage} />
                     </div>
                     <div className="flex flex-col ml-5 w-3/12 max-md:ml-0 max-md:w-full">
                       <label htmlFor="fileInput2">
@@ -383,32 +320,15 @@ function Addproduct() {
                           onDrop={handleDrop2}
                         >
                           {preview2 ? (
-                            <img
-                              loading="lazy"
-                              src={preview2}
-                              className="preview-image"
-                            />
+                            <img loading="lazy" src={preview2} className="preview-image" />
                           ) : (
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?"
-                              className="aspect-square w-[50px]"
-                            />
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?" className="aspect-square w-[50px]" />
                           )}
-                          <div className="mt-7 text-xs font-medium text-gray-800">
-                            Drag and Drop Photo Here
-                          </div>
-                          <div className="self-stretch mt-2 text-sm text-slate-500">
-                            JPEG, JPG, dan PNG, up to xx MB
-                          </div>
+                          <div className="mt-7 text-xs font-medium text-gray-800">Drag and Drop Photo Here</div>
+                          <div className="self-stretch mt-2 text-sm text-slate-500">JPEG, JPG, dan PNG, up to xx MB</div>
                         </div>
                       </label>
-                      <input
-                        id="fileInput2"
-                        type="file"
-                        style={{ display: "none" }}
-                        onChange={loadImage2}
-                      />
+                      <input id="fileInput2" type="file" style={{ display: "none" }} onChange={loadImage2} />
                     </div>
                     <div className="flex flex-col ml-5 w-3/12 max-md:ml-0 max-md:w-full">
                       <label htmlFor="fileInput3">
@@ -418,32 +338,15 @@ function Addproduct() {
                           onDrop={handleDrop3}
                         >
                           {preview3 ? (
-                            <img
-                              loading="lazy"
-                              src={preview3}
-                              className="preview-image"
-                            />
+                            <img loading="lazy" src={preview3} className="preview-image" />
                           ) : (
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?"
-                              className="aspect-square w-[50px]"
-                            />
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?" className="aspect-square w-[50px]" />
                           )}
-                          <div className="mt-7 text-xs font-medium text-gray-800">
-                            Drag and Drop Photo Here
-                          </div>
-                          <div className="self-stretch mt-2 text-sm text-slate-500">
-                            JPEG, JPG, dan PNG, up to xx MB
-                          </div>
+                          <div className="mt-7 text-xs font-medium text-gray-800">Drag and Drop Photo Here</div>
+                          <div className="self-stretch mt-2 text-sm text-slate-500">JPEG, JPG, dan PNG, up to xx MB</div>
                         </div>
                       </label>
-                      <input
-                        id="fileInput3"
-                        type="file"
-                        style={{ display: "none" }}
-                        onChange={loadImage3}
-                      />
+                      <input id="fileInput3" type="file" style={{ display: "none" }} onChange={loadImage3} />
                     </div>
                     <div className="flex flex-col ml-5 w-3/12 max-md:ml-0 max-md:w-full">
                       <label htmlFor="fileInput4">
@@ -453,40 +356,21 @@ function Addproduct() {
                           onDrop={handleDrop4}
                         >
                           {preview4 ? (
-                            <img
-                              loading="lazy"
-                              src={preview4}
-                              className="preview-image"
-                            />
+                            <img loading="lazy" src={preview4} className="preview-image" />
                           ) : (
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?"
-                              className="aspect-square w-[50px]"
-                            />
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?" className="aspect-square w-[50px]" />
                           )}
-                          <div className="mt-7 text-xs font-medium text-gray-800">
-                            Drag and Drop Photo Here
-                          </div>
-                          <div className="self-stretch mt-2 text-sm text-slate-500">
-                            JPEG, JPG, dan PNG, up to xx MB
-                          </div>
+                          <div className="mt-7 text-xs font-medium text-gray-800">Drag and Drop Photo Here</div>
+                          <div className="self-stretch mt-2 text-sm text-slate-500">JPEG, JPG, dan PNG, up to xx MB</div>
                         </div>
                       </label>
-                      <input
-                        id="fileInput4"
-                        type="file"
-                        style={{ display: "none" }}
-                        onChange={loadImage4}
-                      />
+                      <input id="fileInput4" type="file" style={{ display: "none" }} onChange={loadImage4} />
                     </div>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col max-w-[760px] mt-4">
-                <div className="w-full text-lg font-bold text-indigo-950 max-md:max-w-full">
-                  UPLOAD HOME PAGE AND CARD
-                </div>
+                <div className="w-full text-lg font-bold text-indigo-950 max-md:max-w-full">UPLOAD HOME PAGE AND CARD</div>
                 <div className="px-5 mt-1.5 w-full max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
@@ -497,32 +381,15 @@ function Addproduct() {
                           onDrop={handleCardDrop}
                         >
                           {previewcard ? (
-                            <img
-                              loading="lazy"
-                              src={previewcard}
-                              className="preview-image"
-                            />
+                            <img loading="lazy" src={previewcard} className="preview-image" />
                           ) : (
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?"
-                              className="aspect-square w-[50px]"
-                            />
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?" className="aspect-square w-[50px]" />
                           )}
-                          <div className="mt-7 text-xs font-medium text-gray-800">
-                            Drag and Drop Photo Here
-                          </div>
-                          <div className="self-stretch mt-2 text-sm text-slate-500">
-                            JPEG, JPG, dan PNG, up to xx MB
-                          </div>
+                          <div className="mt-7 text-xs font-medium text-gray-800">Drag and Drop Photo Here</div>
+                          <div className="self-stretch mt-2 text-sm text-slate-500">JPEG, JPG, dan PNG, up to xx MB</div>
                         </div>
                       </label>
-                      <input
-                        id="cardInput"
-                        type="file"
-                        style={{ display: "none" }}
-                        onChange={loadCardImage}
-                      />
+                      <input id="cardInput" type="file" style={{ display: "none" }} onChange={loadCardImage} />
                     </div>
                     <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
                       <label htmlFor="cardInput2">
@@ -532,32 +399,15 @@ function Addproduct() {
                           onDrop={handleCardDrop2}
                         >
                           {previewcard2 ? (
-                            <img
-                              loading="lazy"
-                              src={previewcard2}
-                              className="preview-image"
-                            />
+                            <img loading="lazy" src={previewcard2} className="preview-image" />
                           ) : (
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?"
-                              className="aspect-square w-[50px]"
-                            />
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?" className="aspect-square w-[50px]" />
                           )}
-                          <div className="mt-7 text-xs font-medium text-gray-800">
-                            Drag and Drop Photo Here
-                          </div>
-                          <div className="self-stretch mt-2 text-sm text-slate-500">
-                            JPEG, JPG, dan PNG, up to xx MB
-                          </div>
+                          <div className="mt-7 text-xs font-medium text-gray-800">Drag and Drop Photo Here</div>
+                          <div className="self-stretch mt-2 text-sm text-slate-500">JPEG, JPG, dan PNG, up to xx MB</div>
                         </div>
                       </label>
-                      <input
-                        id="cardInput2"
-                        type="file"
-                        style={{ display: "none" }}
-                        onChange={loadCardImage2}
-                      />
+                      <input id="cardInput2" type="file" style={{ display: "none" }} onChange={loadCardImage2} />
                     </div>
                     <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
                       <label htmlFor="cardInput3">
@@ -567,64 +417,30 @@ function Addproduct() {
                           onDrop={handleCardDrop3}
                         >
                           {previewcard3 ? (
-                            <img
-                              loading="lazy"
-                              src={previewcard3}
-                              className="preview-image"
-                            />
+                            <img loading="lazy" src={previewcard3} className="preview-image" />
                           ) : (
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?"
-                              className="aspect-square w-[50px]"
-                            />
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a1f4acc3a1d876cee8d785eab20063f610f67381e6041f4c7cfd280a964551a?" className="aspect-square w-[50px]" />
                           )}
-                          <div className="mt-7 text-xs font-medium text-gray-800">
-                            Drag and Drop Photo Here
-                          </div>
-                          <div className="self-stretch mt-2 text-sm text-slate-500">
-                            JPEG, JPG, dan PNG, up to xx MB
-                          </div>
+                          <div className="mt-7 text-xs font-medium text-gray-800">Drag and Drop Photo Here</div>
+                          <div className="self-stretch mt-2 text-sm text-slate-500">JPEG, JPG, dan PNG, up to xx MB</div>
                         </div>
                       </label>
-                      <input
-                        id="cardInput3"
-                        type="file"
-                        style={{ display: "none" }}
-                        onChange={loadCardImage3}
-                      />
+                      <input id="cardInput3" type="file" style={{ display: "none" }} onChange={loadCardImage3} />
                     </div>
                   </div>
                 </div>
               </div>
               <div className="mt-8 max-md:max-w-full">
                 <div className="flex flex-col max-md:w-full mr-16">
-                  <div className="text-lg font-bold text-indigo-950">
-                    PRODUCT Variant
-                  </div>
+                  <div className="text-lg font-bold text-indigo-950">PRODUCT Variant</div>
                   <div className="mb-6">
                     <div className="flex flex-wrap gap-2">
-                      {availableVariants.map(variant => (
-                        <button
-                          type="button"
-                          key={variant.id}
-                          className={`px-4 py-2 rounded ${variants.some(v => v.id === variant.id)
-                              ? "bg-blue-500 text-white"
-                              : "bg-gray-200 text-gray-700"
-                            }`}
-                          onClick={() => toggleVariant(variant.id)}
-                        >
+                      {availableVariants.map((variant) => (
+                        <button type="button" key={variant.id} className={`px-4 py-2 rounded ${variants.some((v) => v.id === variant.id) ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"}`} onClick={() => toggleVariant(variant.id)}>
                           {variant.name}
                         </button>
                       ))}
-                      <button
-                        type="button"
-                        className={`px-4 py-2 rounded ${variants.length === availableVariants.length
-                            ? "bg-blue-500 text-white"
-                            : "bg-gray-200 text-gray-700"
-                          }`}
-                        onClick={() => setVariants(availableVariants)}
-                      >
+                      <button type="button" className={`px-4 py-2 rounded ${variants.length === availableVariants.length ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"}`} onClick={() => setVariants(availableVariants)}>
                         All Variants
                       </button>
                     </div>
@@ -633,34 +449,15 @@ function Addproduct() {
               </div>
               <div className="mt-8 max-md:max-w-full">
                 <div className="flex flex-col max-md:w-full mr-16">
-                  <div className="text-lg font-bold text-indigo-950">
-                    PRODUCT SIZE
-                  </div>
+                  <div className="text-lg font-bold text-indigo-950">PRODUCT SIZE</div>
                   <div className="mb-6">
                     <div className="flex flex-wrap gap-2">
                       {availableSizes.map((size) => (
-                        <button
-                          type="button"
-                          key={size}
-                          className={`px-4 py-2 rounded ${
-                            sizes.includes(size)
-                              ? "bg-blue-500 text-white"
-                              : "bg-gray-200 text-gray-700"
-                          }`}
-                          onClick={() => toggleSize(size)}
-                        >
+                        <button type="button" key={size} className={`px-4 py-2 rounded ${sizes.includes(size) ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"}`} onClick={() => toggleSize(size)}>
                           {size}
                         </button>
                       ))}
-                      <button
-                        type="button"
-                        className={`px-4 py-2 rounded ${
-                          sizes.length === availableSizes.length
-                            ? "bg-blue-500 text-white"
-                            : "bg-gray-200 text-gray-700"
-                        }`}
-                        onClick={handleAllSizeClick}
-                      >
+                      <button type="button" className={`px-4 py-2 rounded ${sizes.length === availableSizes.length ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"}`} onClick={handleAllSizeClick}>
                         All Sizes
                       </button>
                     </div>

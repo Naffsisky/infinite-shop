@@ -19,7 +19,7 @@ function AllProduct() {
   // Fetch products data from the API
   useEffect(() => {
     axios
-      .get("http://localhost:3000/products")
+      .get("http://ovh.prinafsika.world/products")
       .then((response) => {
         const products = response.data;
         setProducts(products);
@@ -61,18 +61,14 @@ function AllProduct() {
   const handlePriceChange = (e) => {
     const value = parseInt(e.target.value, 10);
     setMaxPriceFilter(value);
-    const filtered = products.filter(
-      (product) => product.price >= priceRange.min && product.price <= value
-    );
+    const filtered = products.filter((product) => product.price >= priceRange.min && product.price <= value);
     setFilteredProducts(filtered);
   };
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     if (category) {
-      const filtered = products.filter(
-        (product) => product.category === category
-      );
+      const filtered = products.filter((product) => product.category === category);
       setFilteredProducts(filtered);
     } else {
       setFilteredProducts(products); // Show all products if no category is selected
@@ -84,22 +80,13 @@ function AllProduct() {
       <div className="homepage-content">
         <Navbar />
         <div className="left-[130px] top-[140px] absolute flex gap-4">
-          <Link
-            to="/HomePage"
-            className="text-slate-500 text-sm font-normal font-['Poppins']"
-          >
+          <Link to="/HomePage" className="text-slate-500 text-sm font-normal font-['Poppins']">
             Home
           </Link>
-          <div className="text-slate-500 text-sm font-normal font-['Poppins']">
-            /
-          </div>
-          <button className="text-slate-500 text-sm font-normal font-['Poppins']">
-            All Products
-          </button>
+          <div className="text-slate-500 text-sm font-normal font-['Poppins']">/</div>
+          <button className="text-slate-500 text-sm font-normal font-['Poppins']">All Products</button>
         </div>
-        <div className="left-[120px] top-[201px] absolute text-violet-600 text-[32px] font-semibold font-['Poppins']">
-          All Products
-        </div>
+        <div className="left-[120px] top-[201px] absolute text-violet-600 text-[32px] font-semibold font-['Poppins']">All Products</div>
         <div className="h-[973px] left-[120px] top-[289px] absolute flex-col justify-start items-start gap-5 inline-flex">
           <div className="w-[1240px] rounded-[20px] justify-start items-center inline-flex">
             <div className="w-[82.50px] self-stretch px-8 py-4 rounded-tl-[20px] rounded-bl-[20px] border-l border-r border-t border-b border-neutral-300 justify-start items-center gap-[136px] flex">
@@ -114,9 +101,7 @@ function AllProduct() {
             <div className="grow shrink basis-0 p-4 rounded-tr-[20px] rounded-br-[20px] border-l border-r border-t border-b border-neutral-300 justify-start items-start gap-4 flex">
               <div
                 className={`nav-button text-center text-sm font-normal font-['Poppins'] px-4 py-2 rounded-[100px] border border-neutral-300 justify-center items-center gap-2.5 flex ${
-                  activeButton === "Relevance"
-                    ? "active bg-violet-600 text-white"
-                    : "hover:border-violet-600"
+                  activeButton === "Relevance" ? "active bg-violet-600 text-white" : "hover:border-violet-600"
                 }`}
                 onClick={() => handleNavClick("Relevance")}
               >
@@ -124,9 +109,7 @@ function AllProduct() {
               </div>
               <div
                 className={`nav-button text-center text-sm font-normal font-['Poppins'] px-4 py-2 rounded-[100px] border border-neutral-300 justify-center items-center gap-2.5 flex ${
-                  activeButton === "Best Selling"
-                    ? "active bg-violet-600 text-white"
-                    : "hover:border-violet-600"
+                  activeButton === "Best Selling" ? "active bg-violet-600 text-white" : "hover:border-violet-600"
                 }`}
                 onClick={() => handleNavClick("Best Selling")}
               >
@@ -134,9 +117,7 @@ function AllProduct() {
               </div>
               <div
                 className={`nav-button text-center text-sm font-normal font-['Poppins'] px-4 py-2 rounded-[100px] border border-neutral-300 justify-center items-center gap-2.5 flex ${
-                  activeButton === "Price : Highest - Lowest"
-                    ? "active bg-violet-600 text-white"
-                    : "hover:border-violet-600"
+                  activeButton === "Price : Highest - Lowest" ? "active bg-violet-600 text-white" : "hover:border-violet-600"
                 }`}
                 onClick={() => handleNavClick("Price : Highest - Lowest")}
               >
@@ -144,9 +125,7 @@ function AllProduct() {
               </div>
               <div
                 className={`nav-button text-sm font-normal font-['Poppins'] px-4 py-2 rounded-[100px] border border-neutral-300 justify-center items-center gap-2.5 flex ${
-                  activeButton === "Price : Lowest - Highest"
-                    ? "active bg-violet-600 text-white"
-                    : "hover:border-violet-600"
+                  activeButton === "Price : Lowest - Highest" ? "active bg-violet-600 text-white" : "hover:border-violet-600"
                 }`}
                 onClick={() => handleNavClick("Price : Lowest - Highest")}
               >
@@ -157,98 +136,46 @@ function AllProduct() {
           <div>
             {isSidebarVisible && (
               <div className="w-[250px] h-[20 rounded-lg absolute top-[80px] border border-violet-600 left-1 bg-white shadow-black p-4 z-9">
-                <h2 className="text-lg font-semibold text-violet-600">
-                  Category
-                </h2>
+                <h2 className="text-lg font-semibold text-violet-600">Category</h2>
                 <div className="mt-4">
                   <div className="mb-2">
-                    <input
-                      type="radio"
-                      id="option0"
-                      name="filter"
-                      value=""
-                      className="text-violet-600 focus:ring-violet-600"
-                      onChange={() => handleCategoryChange("")}
-                      checked={selectedCategory === ""}
-                    />
+                    <input type="radio" id="option0" name="filter" value="" className="text-violet-600 focus:ring-violet-600" onChange={() => handleCategoryChange("")} checked={selectedCategory === ""} />
                     <label htmlFor="option0" className="ml-2 text-gray-500">
                       All
                     </label>
                   </div>
                   <div className="mb-2">
-                    <input
-                      type="radio"
-                      id="option1"
-                      name="filter"
-                      value="T-Shirt"
-                      className="text-violet-600 focus:ring-violet-600"
-                      onChange={() => handleCategoryChange("T-Shirt")}
-                      checked={selectedCategory === "T-Shirt"}
-                    />
+                    <input type="radio" id="option1" name="filter" value="T-Shirt" className="text-violet-600 focus:ring-violet-600" onChange={() => handleCategoryChange("T-Shirt")} checked={selectedCategory === "T-Shirt"} />
                     <label htmlFor="option1" className="ml-2 text-gray-500">
                       T-Shirt
                     </label>
                   </div>
                   <div className="mb-2">
-                    <input
-                      type="radio"
-                      id="option2"
-                      name="filter"
-                      value="Sticker"
-                      className="text-violet-600 focus:ring-violet-600"
-                      onChange={() => handleCategoryChange("Sticker")}
-                      checked={selectedCategory === "Sticker"}
-                    />
+                    <input type="radio" id="option2" name="filter" value="Sticker" className="text-violet-600 focus:ring-violet-600" onChange={() => handleCategoryChange("Sticker")} checked={selectedCategory === "Sticker"} />
                     <label htmlFor="option2" className="ml-2 text-gray-500">
                       Sticker
                     </label>
                   </div>
                   <div className="mb-2">
-                    <input
-                      type="radio"
-                      id="option3"
-                      name="filter"
-                      value="Lanyard"
-                      className="text-violet-600 focus:ring-violet-600"
-                      onChange={() => handleCategoryChange("Lanyard")}
-                      checked={selectedCategory === "Lanyard"}
-                    />
+                    <input type="radio" id="option3" name="filter" value="Lanyard" className="text-violet-600 focus:ring-violet-600" onChange={() => handleCategoryChange("Lanyard")} checked={selectedCategory === "Lanyard"} />
                     <label htmlFor="option3" className="ml-2 text-gray-500">
                       Lanyard
                     </label>
                   </div>
                   <div className="mb-2">
-                    <input
-                      type="radio"
-                      id="option4"
-                      name="filter"
-                      value="Tote bag"
-                      className="text-violet-600 focus:ring-violet-600"
-                      onChange={() => handleCategoryChange("Totebag")}
-                      checked={selectedCategory === "Totebag"}
-                    />
+                    <input type="radio" id="option4" name="filter" value="Tote bag" className="text-violet-600 focus:ring-violet-600" onChange={() => handleCategoryChange("Totebag")} checked={selectedCategory === "Totebag"} />
                     <label htmlFor="option4" className="ml-2 text-gray-500">
                       Tote bag
                     </label>
                   </div>
                   <div className="mb-2">
-                    <input
-                      type="radio"
-                      id="option5"
-                      name="filter"
-                      value="Tumblr"
-                      className="text-violet-600 focus:ring-violet-600"
-                      onChange={() => handleCategoryChange("Tumblr")}
-                      checked={selectedCategory === "Tumblr"}
-                    />
+                    <input type="radio" id="option5" name="filter" value="Tumblr" className="text-violet-600 focus:ring-violet-600" onChange={() => handleCategoryChange("Tumblr")} checked={selectedCategory === "Tumblr"} />
                     <label htmlFor="option5" className="ml-2 text-gray-500">
                       Tumblr
                     </label>
                   </div>
                   <div className="mt-4">
-                    <h2 className="text-lg font-semibold text-violet-600">
-                      Price
-                    </h2>
+                    <h2 className="text-lg font-semibold text-violet-600">Price</h2>
                     <input
                       type="range"
                       min={priceRange.min}
@@ -269,18 +196,10 @@ function AllProduct() {
               <div key={index} className="w-[286px] ml-2 cursor-pointer">
                 <Link to={`/products/${product.id}`}>
                   <div className="h-[352px] py-4 bg-gray-100 rounded-[10px] justify-center items-center flex">
-                    <img
-                      className="w-50 h-80 object-cover"
-                      src={product.cardurl}
-                      alt="placeholder"
-                    />
+                    <img className="w-50 h-80 object-cover" src={product.cardurl} alt="placeholder" />
                   </div>
-                  <div className="mt-2 ml-2 text-gray-800 text-sm font-normal font-['Poppins']">
-                    {product.name}
-                  </div>
-                  <div className="mt-2 ml-2 text-gray-800 text-sm font-semibold font-['Poppins']">
-                    Rp {product.price}
-                  </div>
+                  <div className="mt-2 ml-2 text-gray-800 text-sm font-normal font-['Poppins']">{product.name}</div>
+                  <div className="mt-2 ml-2 text-gray-800 text-sm font-semibold font-['Poppins']">Rp {product.price}</div>
                 </Link>
               </div>
             ))}

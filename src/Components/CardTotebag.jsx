@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "../assets/css/cardtotebag.css";
 
 function CardTotebag() {
@@ -13,8 +13,8 @@ function CardTotebag() {
 
   const getTotebags = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/products");
-      const filteredTotebags = response.data.filter(product => product.category === "Totebag");
+      const response = await axios.get("http://ovh.prinafsika.world/products");
+      const filteredTotebags = response.data.filter((product) => product.category === "Totebag");
       setTotebags(filteredTotebags);
       // Initialize image indices for each product
       const initialIndices = filteredTotebags.reduce((acc, product) => {
@@ -30,7 +30,7 @@ function CardTotebag() {
   const handleImageChange = (productId, index) => {
     setImageIndices({
       ...imageIndices,
-      [productId]: index
+      [productId]: index,
     });
   };
   const formatPrice = (price) => {
@@ -56,9 +56,15 @@ function CardTotebag() {
               <h2>{totebag.name}</h2>
               <div className="color">
                 <h3>Variation :</h3>
-                <span className="number" onClick={() => handleImageChange(totebag.id, 0)}>1</span>
-                <span className="number" onClick={() => handleImageChange(totebag.id, 1)}>2</span>
-                <span className="number" onClick={() => handleImageChange(totebag.id, 2)}>3</span>
+                <span className="number" onClick={() => handleImageChange(totebag.id, 0)}>
+                  1
+                </span>
+                <span className="number" onClick={() => handleImageChange(totebag.id, 1)}>
+                  2
+                </span>
+                <span className="number" onClick={() => handleImageChange(totebag.id, 2)}>
+                  3
+                </span>
               </div>
               <h4>RP : {formatPrice(totebag.price)}</h4>
               <Link to={`detail/${totebag.id}`}>See Details</Link>

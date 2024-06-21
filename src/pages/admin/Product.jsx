@@ -37,7 +37,7 @@ function Product() {
   }, []);
 
   const getProducts = async () => {
-    const response = await axios.get("http://localhost:3000/products");
+    const response = await axios.get("http://ovh.prinafsika.world/products");
     setProducts(response.data);
     setFiltered(response.data);
   };
@@ -49,15 +49,13 @@ function Product() {
   };
 
   const handleSearch = () => {
-    const filteredData = products.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredData = products.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
     setFiltered(filteredData);
   };
 
   const deleteProduct = async (productId) => {
     try {
-      await axios.delete(`http://localhost:3000/products/${productId}`);
+      await axios.delete(`http://ovh.prinafsika.world/products/${productId}`);
       getProducts();
     } catch (error) {
       console.log(error);
@@ -79,10 +77,7 @@ function Product() {
     setShowPopupDelete(false);
   };
   const filteredData = (category) => {
-    const filteredData =
-      category === "All"
-        ? products
-        : products.filter((item) => item.category === category);
+    const filteredData = category === "All" ? products : products.filter((item) => item.category === category);
     setFiltered(filteredData);
     setShowDropdown(false);
   };
@@ -112,19 +107,11 @@ function Product() {
       <div className="product-content">
         <div className="flex flex-col ml-10 w-[90%] max-md:ml-0 max-md:w-full">
           <div className="flex flex-col px-4 mt-2 max-md:mt-10 max-md:max-w-full">
-            <div className="text-2xl font-bold text-violet-600 max-md:max-w-full">
-              Products
-            </div>
-            <div className="mt-2 text-xl text-black max-w-[1305px] max-md:max-w-full">
-              Admin Infinite Learning Shop
-            </div>
+            <div className="text-2xl font-bold text-violet-600 max-md:max-w-full">Products</div>
+            <div className="mt-2 text-xl text-black max-w-[1305px] max-md:max-w-full">Admin Infinite Learning Shop</div>
             <div className="flex gap-2 mt-3 text-base font-medium text-indigo-950 max-md:flex-wrap max-md:pr-3 max-md:mt-5">
               <div className="flex gap-1.5 flex-grow px-3 text-base font-medium bg-white rounded-md text-gray-600 max-md:flex-wrap">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/6169f7382e7b6488c84ca305e718b833c9e636f7eb796d80ce760a86e43598b2?"
-                  className="shrink-0 my-auto aspect-square fill-gray-600 w-[16px]"
-                />
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6169f7382e7b6488c84ca305e718b833c9e636f7eb796d80ce760a86e43598b2?" className="shrink-0 my-auto aspect-square fill-gray-600 w-[16px]" />
                 <input
                   className="max-w-prose bg-inherit w-full border-none outline-none focus:outline-none focus:ring-0"
                   type="text"
@@ -135,37 +122,17 @@ function Product() {
                 />
               </div>
               <div className="relative" ref={dropdownRef}>
-                <div
-                  className="flex items-center gap-1.5 px-10 py-2 text-lg font-medium whitespace-nowrap bg-yellow-400 rounded-md text-indigo-950 cursor-pointer"
-                  onClick={toggleDropdown}
-                >
+                <div className="flex items-center gap-1.5 px-10 py-2 text-lg font-medium whitespace-nowrap bg-yellow-400 rounded-md text-indigo-950 cursor-pointer" onClick={toggleDropdown}>
                   <div>Category</div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`h-4 w-4 transform transition-transform duration-200 ${showDropdown ? "rotate-180" : ""
-                      }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
+                  <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transform transition-transform duration-200 ${showDropdown ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
                 {showDropdown && (
                   <div className="absolute top-full mt-1 left-0 bg-white rounded-md shadow-md w-full z-10">
                     {categories.map((category, index) => (
-                      <div
-                        key={index}
-                        className="p-2 hover:bg-gray-100 text-center"
-                      >
-                        <button onClick={() => filteredData(category)}>
-                          {category}
-                        </button>
+                      <div key={index} className="p-2 hover:bg-gray-100 text-center">
+                        <button onClick={() => filteredData(category)}>{category}</button>
                       </div>
                     ))}
                   </div>
@@ -176,11 +143,7 @@ function Product() {
                   <div className="flex justify-center text-lg font-medium whitespace-nowrap bg-yellow-400 rounded-md cursor-pointer">
                     <div className="flex gap-2 px-4 py-2">
                       <div className="text-indigo-950">Add</div>
-                      <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/4d2195608fde33570b58c6a10aff88eef293a45e574afd1c219715f71359d209?"
-                        className="shrink-0 w-2.5 aspect-square fill-indigo-950"
-                      />
+                      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/4d2195608fde33570b58c6a10aff88eef293a45e574afd1c219715f71359d209?" className="shrink-0 w-2.5 aspect-square fill-indigo-950" />
                     </div>
                   </div>
                 </div>
@@ -189,16 +152,9 @@ function Product() {
             <div className="flex flex-wrap justify-between mt-16 max-md:pr-5 max-md:mt-10 max-md:max-w-full">
               {filtered.map((product) => (
                 <div key={product.id} className="w-full max-w-[214px] mb-5 max-md:w-[48%]">
-                  <div
-                    key={product}
-                    className="w-full max-w-[214px] mb-5 max-md:w-[48%]"
-                  >
+                  <div key={product} className="w-full max-w-[214px] mb-5 max-md:w-[48%]">
                     <div className="flex flex-col bg-white rounded-3xl shadow-sm relative">
-                      <img
-                        loading="lazy"
-                        srcSet={product.cardurl}
-                        className="w-full shadow-sm aspect-[1.15]"
-                      />
+                      <img loading="lazy" srcSet={product.cardurl} className="w-full shadow-sm aspect-[1.15]" />
                       <img
                         loading="lazy"
                         src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f9bfdfd7125ac096d827700d2367e18ee2b96f0ecbfa3c7f7994359dbbd13c3?"
@@ -207,19 +163,12 @@ function Product() {
                       />
 
                       <div className="flex flex-col items-start p-4">
-                        <div className="text-base text-black">
-                          {product.name}
-                        </div>
+                        <div className="text-base text-black">{product.name}</div>
                         <div className="flex gap-2">
                           <Link to={`edit/${product.id}`}>
-                            <button className="justify-center px-3.5 py-1.5 mt-2.5 text-sm text-white bg-violet-600 rounded-xl">
-                              Edit
-                            </button>
+                            <button className="justify-center px-3.5 py-1.5 mt-2.5 text-sm text-white bg-violet-600 rounded-xl">Edit</button>
                           </Link>
-                          <button
-                            onClick={handleManageClick}
-                            className="justify-center px-3.5 py-1.5 mt-2.5 text-sm text-white bg-violet-600 rounded-xl"
-                          >
+                          <button onClick={handleManageClick} className="justify-center px-3.5 py-1.5 mt-2.5 text-sm text-white bg-violet-600 rounded-xl">
                             Rating
                           </button>
                         </div>
@@ -237,34 +186,20 @@ function Product() {
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
                       <div className="flex flex-col self-stretch my-auto text-base text-center text-red-500 max-md:mt-10">
-                        <div className="self-center text-2xl font-bold">
-                          UH-OH !!!
-                        </div>
-                        <div className="mt-2 text-sm text-slate-500">
-                          Are you sure you want to delete this product ?
-                        </div>
+                        <div className="self-center text-2xl font-bold">UH-OH !!!</div>
+                        <div className="mt-2 text-sm text-slate-500">Are you sure you want to delete this product ?</div>
                         <div className="flex justify-center mt-10 space-x-3">
-                          <button
-                            onClick={handleConfirmDelete}
-                            className="px-6 py-2 text-white bg-red-500 rounded-[100px]"
-                          >
+                          <button onClick={handleConfirmDelete} className="px-6 py-2 text-white bg-red-500 rounded-[100px]">
                             Yes
                           </button>
-                          <button
-                            onClick={handleCancelDelete}
-                            className="px-6 py-2 text-red-500 bg-transparent border border-red-500 rounded-[100px]"
-                          >
+                          <button onClick={handleCancelDelete} className="px-6 py-2 text-red-500 bg-transparent border border-red-500 rounded-[100px]">
                             No
                           </button>
                         </div>
                       </div>
                     </div>
                     <div className="flex flex-col ml-5 w-[100%] max-md:ml-0 max-md:w-full">
-                      <img
-                        loading="lazy"
-                        srcSet="https://i.postimg.cc/fyNGt84r/LOH.png"
-                        className="w-full aspect-square max-md:mt-2.5"
-                      />
+                      <img loading="lazy" srcSet="https://i.postimg.cc/fyNGt84r/LOH.png" className="w-full aspect-square max-md:mt-2.5" />
                     </div>
                   </div>
                 </div>

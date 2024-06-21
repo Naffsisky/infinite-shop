@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "../assets/css/lanyard.css";
 
 function CardLanyard() {
@@ -12,8 +12,8 @@ function CardLanyard() {
 
   const getLanyards = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/products");
-      const filteredLanyards = response.data.filter(product => product.category === "Lanyard");
+      const response = await axios.get("http://ovh.prinafsika.world/products");
+      const filteredLanyards = response.data.filter((product) => product.category === "Lanyard");
       setLanyards(filteredLanyards);
     } catch (error) {
       console.error("Error fetching lanyards", error);
@@ -22,7 +22,6 @@ function CardLanyard() {
   const formatPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
-
 
   return (
     <div className="absolute flex-row justify-start items-center gap-[100px] flex">
